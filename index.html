@@ -9,9 +9,14 @@
 <body>
 
   <!-- MENÚ -->
-  <header class="menu">
+    <header class="menu">
     <img src="img/logo.png" alt="Logo Encanto Ventura" class="logo">
-    <nav>
+    <button class="hamburguesa" id="btn-menu" aria-label="Abrir menú">☰</button>
+
+    <div class="fondo-menu" id="fondo-menu"></div>
+
+    <nav id="menu-lateral">
+      <button class="cerrar" id="btn-cerrar" aria-label="Cerrar menú">✕</button>
       <a href="#nosotros">Nosotros</a>
       <a href="#recorridos">Recorridos</a>
       <a href="#miradores">Miradores</a>
@@ -56,6 +61,7 @@
       <div class="tarjeta">
         <span class="nivel">Intermedio / Avanzado</span>
         <h3>Tour Completo</h3>
+        <img src="img/collage-tour.jpg" alt="Collage de los tres recorridos: cañón, mirador y cumbre" class="foto-collage">
         <p><strong>Ruta:</strong> Cerro El Encanto, Cerro Buenaventura y Cañón del Río Aranjuez</p>
         <p><strong>Distancia:</strong> 12 kilómetros total (incluido el km de Cerro Buenaventura)</p>
         <p><strong>Duración:</strong> 6 horas aproximadamente</p>
@@ -112,7 +118,6 @@
 
       <div class="tarjeta">
         <h3>Alimentación</h3>
-        <img src="img/comedor.jpg" alt="Zona de desayuno y almuerzo" class="foto-tour">
         <p><strong>Desayuno:</strong> típico nacional, con café, jugo de naranja o agua dulce.</p>
         <p><strong>Almuerzo (a elegir):</strong></p>
         <ul>
@@ -185,6 +190,30 @@
 
   <!-- BOTÓN FLOTANTE WHATSAPP -->
   <a class="whatsapp" href="https://wa.me/50684222310?text=Hola,%20quiero%20información" target="_blank" aria-label="WhatsApp">💬</a>
+
+     <script>
+    const btnMenu = document.getElementById("btn-menu");
+    const btnCerrar = document.getElementById("btn-cerrar");
+    const menu = document.getElementById("menu-lateral");
+    const fondo = document.getElementById("fondo-menu");
+
+    function abrir() {
+      menu.classList.add("abierto");
+      fondo.classList.add("abierto");
+    }
+
+    function cerrar() {
+      menu.classList.remove("abierto");
+      fondo.classList.remove("abierto");
+    }
+
+    btnMenu.addEventListener("click", abrir);
+    btnCerrar.addEventListener("click", cerrar);
+    fondo.addEventListener("click", cerrar);
+    menu.querySelectorAll("a").forEach(function (enlace) {
+      enlace.addEventListener("click", cerrar);
+    });
+  </script>
 
 </body>
 </html>

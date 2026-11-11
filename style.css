@@ -148,27 +148,22 @@ h2 { font-size: 2rem; margin-top: 0; color: #0f3d2e; }
 .precio { font-size: 1.8rem; font-weight: bold; margin: 5px 0; }
 .precio small { font-size: 0.85rem; font-weight: normal; color: #555; }
 
-.foto-tour {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
 
 /* GALERÍA */
 .galeria {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 15px;
+  column-count: 3;
+  column-gap: 15px;
   margin-top: 25px;
 }
 
+
 .galeria img {
   width: 100%;
-  height: 300px;
-  object-fit: cover;
+  height: auto;
+  display: block;
+  margin-bottom: 15px;
   border-radius: 15px;
+  break-inside: avoid;
 }
 
 /* CONTACTO */
@@ -211,4 +206,89 @@ footer {
   text-align: center;
   color: #1b6b3a;
   margin: 10px 0 0;
+}
+
+/* MENÚ LATERAL */
+.hamburguesa {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #12202b;
+}
+
+.cerrar { display: none; }
+.fondo-menu { display: none; }
+
+@media (max-width: 768px) {
+  .menu {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+
+  .hamburguesa { display: block; }
+
+  .menu nav {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 260px;
+    height: 100vh;
+    background: white;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0;
+    padding: 70px 25px 20px;
+    box-shadow: -4px 0 12px rgba(0,0,0,0.2);
+    transition: right 0.3s;
+    z-index: 2;
+  }
+
+  .menu nav.abierto { right: 0; }
+
+  .menu nav a {
+    padding: 14px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 1.05rem;
+  }
+
+  .cerrar {
+    display: block;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+
+  .fondo-menu.abierto {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    z-index: 1;
+  }
+}
+
+@media (max-width: 700px) {
+  .galeria { column-count: 2; }
+}
+
+.foto-tour,
+.foto-collage {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.foto-tour {
+  object-position: center 60%;
 }
